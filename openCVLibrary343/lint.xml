@@ -6,4 +6,7 @@
     <issue id="NewApi">
         <ignore path="src\org\opencv\android\JavaCameraView.java" />
     </issue>
+    <issue id="LongLogTag">
+        <ignore path="src\main\java\org\opencv\android\BaseLoaderCallback.java" />
+    </issue>
 </lint>
