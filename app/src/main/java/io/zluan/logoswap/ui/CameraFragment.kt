@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.zluan.logoswap.R
 
-class CameraFragment: Fragment() {
+class CameraFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
