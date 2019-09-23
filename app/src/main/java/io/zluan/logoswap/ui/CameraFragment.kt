@@ -179,6 +179,7 @@ class CameraFragment : Fragment() {
             // level >= 24, so if you only target 24+ you can remove this statement
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 requireActivity().sendBroadcast(
+                    // TODO(zluan): replace the deprecated Camera usage with Camera2
                     Intent(Camera.ACTION_NEW_PICTURE, Uri.fromFile(photoFile)))
             }
 

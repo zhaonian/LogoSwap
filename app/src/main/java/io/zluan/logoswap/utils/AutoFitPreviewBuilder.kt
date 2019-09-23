@@ -135,6 +135,7 @@ class AutoFitPreviewBuilder private constructor(
     }
 
     /** Helper function that fits a camera preview into the given [TextureView] */
+    @Suppress("ComplexMethod", "ReturnCount")
     private fun updateTransform(
         textureView: TextureView?,
         rotation: Int?,
@@ -215,6 +216,7 @@ class AutoFitPreviewBuilder private constructor(
         private val TAG = AutoFitPreviewBuilder::class.java.simpleName
 
         /** Helper function that gets the rotation of a [Display] in degrees */
+        @Suppress("MagicNumber")
         fun getDisplaySurfaceRotation(display: Display?) = when (display?.rotation) {
             Surface.ROTATION_0 -> 0
             Surface.ROTATION_90 -> 90
