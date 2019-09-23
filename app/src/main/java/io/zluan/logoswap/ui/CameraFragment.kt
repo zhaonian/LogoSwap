@@ -49,7 +49,6 @@ import io.zluan.logoswap.utils.simulateClick
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.Locale
 
