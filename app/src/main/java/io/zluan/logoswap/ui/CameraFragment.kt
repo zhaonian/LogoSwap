@@ -24,6 +24,7 @@ import android.view.ViewGroup
 import android.webkit.MimeTypeMap
 import android.widget.ImageButton
 import androidx.camera.core.CameraX
+import androidx.camera.core.CameraInfoUnavailableException
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureConfig
 import androidx.camera.core.Preview
@@ -115,9 +116,8 @@ class CameraFragment : Fragment() {
         // Make sure that all permissions are still present, since user could have removed them
         //  while the app was on paused state
         if (!PermissionsFragment.hasPermissions(requireContext())) {
-            Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-                CameraFragmentDirections.actionCameraToPermissions())
-
+            Navigation.findNavController(requireActivity(), R.id.fragment_container)
+                .navigate(CameraFragmentDirections.actionCameraToPermissions())
         }
     }
 
@@ -132,7 +132,8 @@ class CameraFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?): View? =
+        savedInstanceState: Bundle?
+    ): View? =
         inflater.inflate(R.layout.fragment_camera, container, false)
 
     private fun setGalleryThumbnail(file: File) {
@@ -156,14 +157,16 @@ class CameraFragment : Fragment() {
     /** Define callback that will be triggered after a photo has been taken and saved to disk */
     private val imageSavedListener = object : ImageCapture.OnImageSavedListener {
         override fun onError(
-            error: ImageCapture.ImageCaptureError, message: String, exc: Throwable?) {
+            error: ImageCapture.ImageCaptureError,
+            message: String,
+            exc: Throwable?
+        ) {
             Log.e(TAG, "Photo capture failed: $message")
             exc?.printStackTrace()
         }
 
         override fun onImageSaved(photoFile: File) {
             Log.d(TAG, "Photo capture succeeded: ${photoFile.absolutePath}")
-
 
             // We can only change the foreground Drawable using API level 23+ API
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -321,7 +324,7 @@ class CameraFragment : Fragment() {
                 // Unbind all use cases and bind them again with the new lens facing configuration
                 CameraX.unbindAll()
                 bindCameraUseCases()
-            } catch (exc: Exception) {
+            } catch (exc: CameraInfoUnavailableException) {
                 // Do nothing
             }
         }

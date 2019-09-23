@@ -5,19 +5,28 @@ import android.graphics.Matrix
 import android.hardware.display.DisplayManager
 import android.util.Log
 import android.util.Size
-import android.view.*
+import android.view.TextureView
+import android.view.View
+import android.view.ViewGroup
+import android.view.Display
+import android.view.Surface
 import androidx.camera.core.Preview
 import androidx.camera.core.PreviewConfig
 import java.lang.IllegalArgumentException
 import java.lang.ref.WeakReference
-import java.util.*
+import java.util.Objects
 
 /**
  * Builder for [Preview] that takes in a [WeakReference] of the view finder and [PreviewConfig],
  * then instantiates a [Preview] which automatically resizes and rotates reacting to config changes.
+ *
+ * took from:
+ * https://github.com/android/camera-samples/blob/master/CameraXBasic/app/src/main/java/com/android/
+ * example/cameraxbasic/utils/AutoFitPreviewBuilder.kt
  */
 class AutoFitPreviewBuilder private constructor(
-    config: PreviewConfig, viewFinderRef: WeakReference<TextureView>
+    config: PreviewConfig,
+    viewFinderRef: WeakReference<TextureView>
 ) {
 
     /** Public instance of preview use-case which can be used by consumers of this adapter */
@@ -61,8 +70,9 @@ class AutoFitPreviewBuilder private constructor(
 
     init {
         // Make sure that the view finder reference is valid
-        val viewFinder = viewFinderRef.get() ?:
-        throw IllegalArgumentException("Invalid reference to view finder used")
+        val viewFinder = viewFinderRef.get() ?: throw IllegalArgumentException(
+            "Invalid reference to view finder used"
+        )
 
         // Initialize the display and rotation from texture view information
         viewFinderDisplay = viewFinder.display.displayId
@@ -73,8 +83,6 @@ class AutoFitPreviewBuilder private constructor(
 
         // Every time the view finder is updated, recompute layout
         useCase.onPreviewOutputUpdateListener = Preview.OnPreviewOutputUpdateListener {
-            val viewFinder =
-                viewFinderRef.get() ?: return@OnPreviewOutputUpdateListener
             Log.d(TAG, "Preview output changed. " +
                     "Size: ${it.textureSize}. Rotation: ${it.rotationDegrees}")
 
@@ -93,8 +101,7 @@ class AutoFitPreviewBuilder private constructor(
         }
 
         // Every time the provided texture view changes, recompute layout
-        viewFinder.addOnLayoutChangeListener { view, left, top, right, bottom, _, _, _, _ ->
-            val viewFinder = view as TextureView
+        viewFinder.addOnLayoutChangeListener { _, left, top, right, bottom, _, _, _, _ ->
             val newViewFinderDimens = Size(right - left, bottom - top)
             Log.d(TAG, "View finder layout changed. Size: $newViewFinderDimens")
             val rotation = getDisplaySurfaceRotation(viewFinder.display)
@@ -128,12 +135,12 @@ class AutoFitPreviewBuilder private constructor(
     }
 
     /** Helper function that fits a camera preview into the given [TextureView] */
-    private fun updateTransform(textureView: TextureView?, rotation: Int?, newBufferDimens: Size,
-                                newViewFinderDimens: Size
+    private fun updateTransform(
+        textureView: TextureView?,
+        rotation: Int?,
+        newBufferDimens: Size,
+        newViewFinderDimens: Size
     ) {
-        // This should not happen anyway, but now the linter knows
-        val textureView = textureView ?: return
-
         if (rotation == viewFinderRotation &&
             Objects.equals(newBufferDimens, bufferDimens) &&
             Objects.equals(newViewFinderDimens, viewFinderDimens)) {
@@ -201,14 +208,14 @@ class AutoFitPreviewBuilder private constructor(
         matrix.preScale(xScale, yScale, centerX, centerY)
 
         // Finally, apply transformations to our TextureView
-        textureView.setTransform(matrix)
+        textureView?.setTransform(matrix)
     }
 
     companion object {
         private val TAG = AutoFitPreviewBuilder::class.java.simpleName
 
         /** Helper function that gets the rotation of a [Display] in degrees */
-        fun getDisplaySurfaceRotation(display: Display?) = when(display?.rotation) {
+        fun getDisplaySurfaceRotation(display: Display?) = when (display?.rotation) {
             Surface.ROTATION_0 -> 0
             Surface.ROTATION_90 -> 90
             Surface.ROTATION_180 -> 180
