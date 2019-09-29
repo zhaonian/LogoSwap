@@ -5,5 +5,4 @@ enum class DecalRepositoryType {
     ModelBasedRepository
 }
 
-class DecalRepositoryDescriptor {
-}
+class DecalRepositoryDescriptor
