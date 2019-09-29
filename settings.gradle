@@ -1,3 +1,4 @@
 rootProject.name='Logo Swap'
 include ':app'
+include ':pixelmod'
 include ':openCVLibrary343'
