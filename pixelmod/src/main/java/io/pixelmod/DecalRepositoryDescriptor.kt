@@ -1,4 +1,4 @@
-package pixelmod
+package io.pixelmod
 
 enum class DecalRepositoryType {
     ImageDecalRepository,

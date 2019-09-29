@@ -1,4 +1,4 @@
-package pixelmod
+package io.pixelmod
 
 import android.graphics.Bitmap
 
