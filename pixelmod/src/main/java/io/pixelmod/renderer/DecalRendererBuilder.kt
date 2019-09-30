@@ -2,10 +2,6 @@ package io.pixelmod.renderer
 
 import io.pixelmod.repository.IDecalRepository
 
-enum class DecalRendererAlgorithmType {
-    SIFT_DECAL_RENDERER
-}
-
 /**
  * Build a decal renderer that satisfies the specified options.
  */
