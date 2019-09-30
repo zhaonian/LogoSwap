@@ -1,6 +1,5 @@
 package io.pixelmod.repository
 
-
 /**
  * A collection of decals in the form of physical files.
  */
