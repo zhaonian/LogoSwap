@@ -1,5 +1,7 @@
 package io.pixelmod
 
+import org.opencv.android.OpenCVLoader
+
 enum class DecalRendererAlgorithmType {
     SIFT_DECAL_RENDERER
 }
@@ -13,5 +15,15 @@ class DecalRendererBuilder {
     }
     fun build(): IDecalRenderer {
         throw UnsupportedOperationException()
+    }
+
+    companion object {
+        /**
+         * TODO: remove this, this is just a dummy function to test if openCV has been set up
+         * properly
+         */
+        fun initOpenCvTest(): Boolean {
+            return OpenCVLoader.initDebug()
+        }
     }
 }

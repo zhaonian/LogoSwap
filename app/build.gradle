@@ -72,8 +72,8 @@ dependencies {
     // UI
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
-    // OpenCV Android
-    implementation project(path: ':openCVLibrary343')
+    // PixelMod
+    implementation project(path: ':pixelmod')
 
     // Unit testing
     testImplementation 'androidx.test.ext:junit:1.1.1'

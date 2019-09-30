@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.Toast
+import io.pixelmod.DecalRendererBuilder
 import io.zluan.logoswap.utils.FLAGS_FULLSCREEN
-import org.opencv.android.OpenCVLoader
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
@@ -18,10 +18,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         container = findViewById(R.id.fragment_container)
 
-        if (OpenCVLoader.initDebug()) {
-            Toast.makeText(this, "openCv successfully loaded", Toast.LENGTH_LONG).show()
+        if (DecalRendererBuilder.initOpenCvTest()) {
+            Toast.makeText(this, "Succeeded to load OpenCV", Toast.LENGTH_LONG).show()
         } else {
-            Toast.makeText(this, "openCv cannot be loaded", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Failed to load OpenCV", Toast.LENGTH_LONG).show()
         }
     }
 
