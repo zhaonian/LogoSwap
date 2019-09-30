@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.Toast
-import io.pixelmod.DecalRendererBuilder
+import io.pixelmod.renderer.DecalRendererBuilder
 import io.zluan.logoswap.utils.FLAGS_FULLSCREEN
 import java.io.File
 
