@@ -8,5 +8,7 @@ enum class DecalRepositoryType {
 /**
  * A description detailed enough to load any IDecalRepository.
  */
-data class DecalRepositoryDescriptor(val type: DecalRepositoryType,
-                                     val fileLocation: String)
+data class DecalRepositoryDescriptor(
+    val type: DecalRepositoryType,
+    val fileLocation: String
+)
