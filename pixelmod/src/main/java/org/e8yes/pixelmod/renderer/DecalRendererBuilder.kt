@@ -1,10 +1,8 @@
-package io.pixelmod.renderer
+package org.e8yes.pixelmod.renderer
 
-import io.pixelmod.repository.IDecalRepository
+import org.e8yes.pixelmod.repository.IDecalRepository
 
-/**
- * Build a decal renderer that satisfies the specified options.
- */
+/** Build a decal renderer that satisfies the specified options. */
 abstract class DecalRendererBuilder {
 
     abstract val repository: IDecalRepository
