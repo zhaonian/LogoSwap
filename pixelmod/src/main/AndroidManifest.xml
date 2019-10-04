@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.pixelmod">
+    package="or.e8yes.pixelmod">
 
     <!-- Declare features -->
     <uses-feature android:name="android.hardware.camera" />
