@@ -1,7 +1,6 @@
 package org.e8yes.pixelmod.repository
 
 import android.graphics.Bitmap
-import java.io.File
 
 data class ImageDecal(val handle: DecalHandle, val path: String, val image: Bitmap)
 
