@@ -1,8 +1,6 @@
-package io.pixelmod.repository
+package org.e8yes.pixelmod.repository
 
-/**
- * A collection of decals in the form of physical files.
- */
+/** A collection of decals in the form of physical files. */
 class ImageDecalRepository(private val descriptor: DecalRepositoryDescriptor) : IDecalRepository {
 
     override fun decals(): List<DecalHandle> {

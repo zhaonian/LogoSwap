@@ -1,8 +1,8 @@
-package io.pixelmod.renderer
+package org.e8yes.pixelmod.renderer
 
 import android.graphics.Bitmap
-import io.pixelmod.repository.DecalHandle
-import io.pixelmod.repository.ImageDecalRepository
+import org.e8yes.pixelmod.repository.DecalHandle
+import org.e8yes.pixelmod.repository.ImageDecalRepository
 
 /**
  * Tries to match object in the src image with that selected from the repository using SIFT matcher.

@@ -1,4 +1,4 @@
-package io.pixelmod.repository
+package org.e8yes.pixelmod.repository
 
 /**
  * An abstract representation of a collection of decal images. Note that: a decal does not have to
@@ -6,13 +6,9 @@ package io.pixelmod.repository
  */
 interface IDecalRepository {
 
-    /**
-     * Returns all possible decal selections from the repository.
-     */
+    /** Returns all possible decal selections from the repository. */
     fun decals(): List<DecalHandle>
 
-    /**
-     * The descriptor was used to construct this repository.
-     */
+    /** The descriptor was used to construct this repository. */
     fun descriptor(): DecalRepositoryDescriptor
 }
