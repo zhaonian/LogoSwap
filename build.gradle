@@ -5,30 +5,23 @@ buildscript {
     ext.java_version = JavaVersion.VERSION_1_8
     repositories {
         google()
-        jcenter()
-        
+        gradlePluginPortal()
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0"
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'org.jlleitschuh.gradle:ktlint-gradle:8.2.0'
     }
 }
 
-plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.0.1"
-}
-
 allprojects {
-    apply from: "$rootDir/ktlint.gradle"
-    apply from: "$rootDir/detekt.gradle"
+    apply plugin: 'org.jlleitschuh.gradle.ktlint'
 
     repositories {
         google()
-        jcenter()
-        
+        gradlePluginPortal()
     }
 }
 
