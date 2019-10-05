@@ -12,7 +12,7 @@ import io.pixelmod.repository.ImageDecalRepository
  */
 class SiftDecalRenderer(val repository: ImageDecalRepository) : IDecalRenderer {
 
-    override fun render(src: Bitmap, decal: DecalHandle): Bitmap {
+    override fun render(src: Bitmap, detect: DecalHandle, mod: DecalHandle): Bitmap {
         TODO("not implemented")
     }
 }

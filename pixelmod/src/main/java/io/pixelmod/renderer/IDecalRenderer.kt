@@ -8,5 +8,5 @@ import io.pixelmod.repository.DecalHandle
  * possible.
  */
 interface IDecalRenderer {
-    fun render(src: Bitmap, decal: DecalHandle): Bitmap
+    fun render(src: Bitmap, detect: DecalHandle, mod: DecalHandle): Bitmap
 }
