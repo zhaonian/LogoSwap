@@ -8,5 +8,11 @@ import org.e8yes.pixelmod.repository.DecalHandle
  * possible.
  */
 interface IDecalRenderer {
-    fun render(src: Bitmap, decal: DecalHandle): Bitmap
+
+    /**
+     * Takes in an input image src then detects a sub-region that matches the decal srcDecal, if
+     * possible, and returns the resulting image where dstDecal is rendered onto the matched
+     * sub-region. If the detection fails, it will return the input image.
+     */
+    fun render(src: Bitmap, srcDecal: DecalHandle, dstDecal: DecalHandle): Bitmap
 }
