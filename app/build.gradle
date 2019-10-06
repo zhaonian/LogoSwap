@@ -6,7 +6,7 @@ apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion 29
-    
+
     defaultConfig {
         applicationId "io.zluan.logoswap"
         minSdkVersion 21
@@ -33,6 +33,17 @@ android {
         }
         androidTest {
             java.srcDir sharedTestDir
+        }
+    }
+    splits {
+        abi {
+            enable true
+            reset()
+            if (rootProject.ext.ci || gradle.startParameter.taskNames.any { it.contains('release') }) {
+                include 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'mips', 'mips64', 'x86', 'x86_64'
+            } else {
+                include 'x86_64'
+            }
         }
     }
     // Necessary for Robolectric unit tests
