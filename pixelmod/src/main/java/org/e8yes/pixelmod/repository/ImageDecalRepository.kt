@@ -8,7 +8,7 @@ data class ImageDecal(val handle: DecalHandle, val path: String, val image: Bitm
 class ImageDecalRepository : IDecalRepository {
 
     private val descriptor: DecalRepositoryDescriptor
-    private val decals: List<ImageDecal> = ArrayList()
+    private val decals = ArrayList<ImageDecal>()
 
     constructor(descriptor: DecalRepositoryDescriptor) {
         this.descriptor = descriptor
