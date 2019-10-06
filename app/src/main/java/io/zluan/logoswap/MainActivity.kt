@@ -1,15 +1,15 @@
 package io.zluan.logoswap
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import io.zluan.logoswap.utils.FLAGS_FULLSCREEN
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
-    private var container: FrameLayout? = null
+    private lateinit var container: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         // Before setting full screen flags, we must wait a bit to let UI settle; otherwise, we may
         // be trying to set app to immersive mode before it's ready and the flags do not stick
-        container?.postDelayed(
-            { container?.systemUiVisibility = FLAGS_FULLSCREEN },
+        container.postDelayed(
+            { container.systemUiVisibility = FLAGS_FULLSCREEN },
             IMMERSIVE_FLAG_TIMEOUT
         )
     }
@@ -37,9 +37,13 @@ class MainActivity : AppCompatActivity() {
         fun getOutputDirectory(context: Context): File {
             val appContext = context.applicationContext
             val mediaDir = context.externalMediaDirs.firstOrNull()?.let {
-                File(it, appContext.resources.getString(R.string.app_name)).apply { mkdirs() } }
-            return if (mediaDir != null && mediaDir.exists())
-                mediaDir else appContext.filesDir
+                File(it, appContext.resources.getString(R.string.app_name)).apply { mkdirs() }
+            }
+            return if (mediaDir?.exists() == true) {
+                mediaDir
+            } else {
+                appContext.filesDir
+            }
         }
     }
 }
