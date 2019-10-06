@@ -51,8 +51,7 @@ class PermissionsFragment : Fragment() {
         private const val PERMISSIONS_REQUEST_CODE = 10
 
         private val PERMISSIONS_REQUIRED = arrayOf(
-            Manifest.permission.CAMERA,
-            Manifest.permission.RECORD_AUDIO
+            Manifest.permission.CAMERA
         )
 
         /** Convenience method used to check if all permissions required are granted. */
