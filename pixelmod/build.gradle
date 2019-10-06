@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.google.protobuf'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'org.jetbrains.kotlin.android.extensions'
 apply plugin: 'org.jetbrains.kotlin.kapt'
@@ -22,6 +23,9 @@ android {
 dependencies {
     // Kotlin
     implementation"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // Protocol buffer
+    implementation 'com.google.protobuf:protobuf-lite:3.0.0'
 
     // OpenCV Android
     implementation project(':openCVLibrary343')
