@@ -22,13 +22,13 @@ android {
 
 dependencies {
     // Kotlin
-    implementation"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // Protocol buffer
     implementation 'com.google.protobuf:protobuf-lite:3.0.0'
 
     // OpenCV Android
-    implementation project(':openCVLibrary343')
+    implementation 'com.github.iamareebjamal:opencv-android:4.1.1'
 
     // Unit testing
     testImplementation 'androidx.test.ext:junit:1.1.1'
