@@ -1,9 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
-    rootProject.extra["kotlin_version"] = "1.3.50"
-    rootProject.extra["java_version"] = JavaVersion.VERSION_1_8
-    rootProject.extra["ci"] = rootProject.hasProperty("ci")
+    rootProject.apply {
+        extra["kotlin_version"] = "1.3.50"
+        extra["java_version"] = JavaVersion.VERSION_1_8
+        extra["ci"] = rootProject.hasProperty("ci")
+    }
 
     repositories {
         google()
@@ -34,6 +36,6 @@ allprojects {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         allWarningsAsErrors = true
-        jvmTarget = "1.8"
+        jvmTarget = rootProject.extra["java_version"].toString()
     }
 }
