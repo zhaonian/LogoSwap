@@ -71,14 +71,14 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha05")
 
     // Navigation library
-    val nav_version = "2.1.0"
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    val navVersion = "2.1.0"
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
 
     // CameraX
-    val camerax_version = "1.0.0-alpha05"
-    implementation("androidx.camera:camera-core:$camerax_version")
-    implementation("androidx.camera:camera-camera2:$camerax_version")
+    val cameraxVersion = "1.0.0-alpha05"
+    implementation("androidx.camera:camera-core:$cameraxVersion")
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.9.0")

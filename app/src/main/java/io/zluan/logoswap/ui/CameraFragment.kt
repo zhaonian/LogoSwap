@@ -222,9 +222,9 @@ class CameraFragment : Fragment() {
 
             // In the background, load latest photo taken (if any) for gallery thumbnail
             lifecycleScope.launch(Dispatchers.IO) {
-                outputDirectory.listFiles { file ->
-                    EXTENSION_WHITELIST.contains(file.extension.toUpperCase())
-                }.sorted().reversed().firstOrNull()?.let { setGalleryThumbnail(it) }
+                outputDirectory.listFiles()?.filter {
+                    EXTENSION_WHITELIST.contains(it.extension.toUpperCase())
+                }?.max()?.let { setGalleryThumbnail(it) }
             }
         }
     }
@@ -302,9 +302,10 @@ class CameraFragment : Fragment() {
 
                     // Display flash animation to indicate that photo was captured
                     container.postDelayed({
-                        container.foreground = ColorDrawable(Color.WHITE)
+                        container.foreground = ColorDrawable(Color.BLACK)
                         container.postDelayed(
-                            { container.foreground = null }, ANIMATION_FAST_MILLIS)
+                            { container.foreground = null }, ANIMATION_FAST_MILLIS
+                        )
                     }, ANIMATION_SLOW_MILLIS)
                 }
             }
@@ -332,7 +333,8 @@ class CameraFragment : Fragment() {
         // Listener for button used to view last photo
         controls.findViewById<ImageButton>(R.id.photo_view_button).setOnClickListener {
             Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-                CameraFragmentDirections.actionCameraToGallery(outputDirectory.absolutePath))
+                CameraFragmentDirections.actionCameraToGallery(outputDirectory.absolutePath)
+            )
         }
     }
 
@@ -343,7 +345,10 @@ class CameraFragment : Fragment() {
 
         /** Helper function used to create a timestamped file */
         private fun createFile(baseFolder: File, format: String, extension: String) =
-            File(baseFolder, SimpleDateFormat(format, Locale.US)
-                .format(System.currentTimeMillis()) + extension)
+            File(
+                baseFolder,
+                SimpleDateFormat(format, Locale.US).format(System.currentTimeMillis()) +
+                        extension
+            )
     }
 }
