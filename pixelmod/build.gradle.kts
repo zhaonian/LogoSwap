@@ -17,11 +17,24 @@ android {
         targetSdkVersion(29)
     }
 
+    compileOptions {
+        sourceCompatibility = rootProject.extra["java_version"] as JavaVersion
+        targetCompatibility = rootProject.extra["java_version"] as JavaVersion
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
             proguardFile(getDefaultProguardFile("proguard-android-optimize.txt"))
             proguardFile(file("proguard-rules.pro"))
+        }
+    }
+
+    testOptions {
+        animationsDisabled = true
+        unitTests.apply {
+            isReturnDefaultValues = true
+            isIncludeAndroidResources = true
         }
     }
 }
