@@ -1,11 +1,14 @@
 package io.zluan.logoswap
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import io.zluan.logoswap.utils.FLAGS_FULLSCREEN
 import java.io.File
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +28,17 @@ class MainActivity : AppCompatActivity() {
             { container.systemUiVisibility = FLAGS_FULLSCREEN },
             IMMERSIVE_FLAG_TIMEOUT
         )
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        return when (keyCode) {
+            KeyEvent.KEYCODE_VOLUME_DOWN -> {
+                val intent = Intent(KEY_EVENT_ACTION).apply { putExtra(KEY_EVENT_EXTRA, keyCode) }
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
+                true
+            }
+            else -> super.onKeyDown(keyCode, event)
+        }
     }
 
     companion object {
