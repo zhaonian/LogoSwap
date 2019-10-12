@@ -10,20 +10,20 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(deps.build.compileSdk)
 
     defaultConfig {
         applicationId = "io.zluan.logoswap"
         versionCode = 1
         versionName = "1.0"
-        minSdkVersion(21)
-        targetSdkVersion(29)
+        minSdkVersion(deps.build.minSdk)
+        targetSdkVersion(deps.build.targetSdk)
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
-        sourceCompatibility = rootProject.extra["java_version"] as JavaVersion
-        targetCompatibility = rootProject.extra["java_version"] as JavaVersion
+        sourceCompatibility = deps.versions.java
+        targetCompatibility = deps.versions.java
     }
 
     buildTypes {
@@ -62,44 +62,41 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.1.0")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0")
+    implementation(deps.android.core)
+    implementation(deps.kotlin.stdlib)
+    implementation(deps.kotlin.coroutines)
 
     // App compat
-    implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha05")
+    implementation(deps.android.appcompat)
+    implementation(deps.android.lifecycle)
 
     // Navigation library
-    val navVersion = "2.1.0"
-    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
-    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+    implementation(deps.android.navigation.fragment)
+    implementation(deps.android.navigation.ui)
 
     // CameraX
-    val cameraxVersion = "1.0.0-alpha05"
-    implementation("androidx.camera:camera-core:$cameraxVersion")
-    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation(deps.android.camera.core)
+    implementation(deps.android.camera.camera2)
 
     // Glide
-    implementation("com.github.bumptech.glide:glide:4.9.0")
-    kapt("com.github.bumptech.glide:compiler:4.9.0")
+    implementation(deps.glide.glide)
+    kapt(deps.glide.compiler)
 
     // UI
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation(deps.android.constraintlayout)
 
     // PixelMod
     implementation(project(":pixelmod"))
 
     // Unit testing
-    testImplementation("androidx.test.ext:junit:1.1.1")
-    testImplementation("androidx.test:rules:1.2.0")
-    testImplementation("androidx.test:runner:1.2.0")
-    testImplementation("androidx.test.espresso:espresso-core:3.2.0")
-    testImplementation("org.robolectric:robolectric:4.3")
+    testImplementation(deps.android.test.junit)
+    testImplementation(deps.android.test.runner)
+    testImplementation(deps.android.test.core)
+    testImplementation(deps.test.robolectric)
 
     // Instrumented testing
-    androidTestImplementation("androidx.test.ext:junit:1.1.1")
-    androidTestImplementation("androidx.test:rules:1.2.0")
-    androidTestImplementation("androidx.test:runner:1.2.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
+    androidTestImplementation(deps.android.test.core)
+    androidTestImplementation(deps.android.test.junit)
+    androidTestImplementation(deps.android.test.runner)
+    androidTestImplementation(deps.android.test.core)
 }

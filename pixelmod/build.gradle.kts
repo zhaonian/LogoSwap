@@ -10,16 +10,16 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(deps.build.compileSdk)
 
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(29)
+        minSdkVersion(deps.build.minSdk)
+        targetSdkVersion(deps.build.targetSdk)
     }
 
     compileOptions {
-        sourceCompatibility = rootProject.extra["java_version"] as JavaVersion
-        targetCompatibility = rootProject.extra["java_version"] as JavaVersion
+        sourceCompatibility = deps.versions.java
+        targetCompatibility = deps.versions.java
     }
 
     buildTypes {
@@ -41,16 +41,15 @@ android {
 
 dependencies {
     // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+    implementation(deps.kotlin.stdlib)
 
     // Protocol buffer
-    implementation("com.google.protobuf:protobuf-lite:3.0.0")
+    implementation(deps.protobuf.protobufLite)
 
     // OpenCV Android
-    implementation("com.github.iamareebjamal:opencv-android:4.1.1")
+    implementation(deps.opencv.opencvAndroid)
 
     // Unit testing
-    testImplementation("androidx.test.ext:junit:1.1.1")
-    testImplementation("androidx.test:rules:1.2.0")
-    testImplementation("androidx.test:runner:1.2.0")
+    testImplementation(deps.android.test.junit)
+    testImplementation(deps.android.test.runner)
 }
