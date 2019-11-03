@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.e8yes.pixelmod.repository";
+option java_outer_classname = "ImageDecalEntryProtos";
+
+// An entry that describes image items in an image decal repository.
+message ImageDecalEntry {
+    int32 id = 1;
+    string title = 2;
+    string description = 3;
+
+    // File paths relative to the repository root.
+    string image_file_path = 4;
+    string thumbnail_file_path = 5;
+}

@@ -1,3 +1,6 @@
+import com.google.protobuf.gradle.*
+import org.gradle.kotlin.dsl.provider.gradleKotlinDslOf
+
 apply {
     plugin("com.google.protobuf")
 }
@@ -52,4 +55,20 @@ dependencies {
     // Unit testing
     testImplementation(deps.android.test.junit)
     testImplementation(deps.android.test.runner)
+}
+
+protobuf {
+    protoc {
+        // The artifact spec for the Protobuf Compiler
+        artifact = "com.google.protobuf:protoc:3.6.1"
+    }
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+            }
+            task.plugins {
+                kotlin { }
+            }
+        }
+    }
 }
